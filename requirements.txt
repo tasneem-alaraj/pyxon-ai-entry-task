@@ -13,6 +13,7 @@ langchain-openai
 langchain-community
 langchain-core
 tiktoken
+langchain-experimental
 
 #Vector Database
 faiss-cpu

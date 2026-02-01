@@ -4,7 +4,7 @@
 - **Name:** Tasneem Adel Al'araj
 - **Email:** tasneemalaraj2003@gmail.com
 - **Phone:** 00962785698577
-- **Live Demo:** 🔗 [رابط الـ Streamlit Cloud الذي ستحصلين عليه]
+- **Live Demo:** 🔗
 
 ---
 
@@ -13,26 +13,31 @@ In this project, I built an end-to-end AI document parser tailored for RAG (Retr
 
 ## Features & Implementation
 
-### 1. Document Processing & Intelligent Chunking
-I implemented a parser capable of handling **PDF, DOCX, and TXT** formats. For chunking, I didn't settle for fixed character counts; instead, I used a `RecursiveCharacterTextSplitter` with custom separators like (`،`, `؟`, `!`). 
-- **The Goal:** To ensure that chunks end at natural sentence boundaries, preserving the semantic meaning—especially important for Arabic literature and structured documents.
+### 1. Document Processing & Chunking
+Unlike standard character-based splitting, I implemented Semantic Chunking using langchain-experimental.
+
+The Logic: The system analyzes the "Semantic Distance" between sentences using OpenAI embeddings. It only breaks a chunk when it detects a significant shift in the topic.
+
+Why it matters: This directly addresses the Dynamic Chunking requirement and serves as a foundation for RAPTOR-style hierarchical retrieval, ensuring that context remains coherent and topic-focused
 
 ### 2. Hybrid Storage Strategy
 - **Vector DB (FAISS):** I chose **FAISS** to store embeddings. It’s highly efficient for local development and offered much better stability on Windows during testing compared to other options like ChromaDB.
 - **SQL DB (SQLite):** I used SQLite to manage document metadata (upload timestamps, chunk counts, etc.). This allows for structured auditing and relational queries that a Vector DB alone cannot handle.
 
 ### 3. Arabic Language Excellence
-To handle Arabic diacritics (tashkeel) correctly, I utilized the `text-embedding-3-small` model. In my testing, it proved superior at understanding the underlying semantics whether the text was fully vocalized or not.
+To handle Arabic diacritics (tashkeel) correctly, I utilized the `text-embedding-3-small` model. It successfully captures the underlying semantics whether the text is vocalized or not, ensuring robust retrieval for diverse Arabic documents.
 
 ### 4. Modern RAG Workflow
-The system is built using **LangChain Expression Language (LCEL)**. This modular approach makes the pipeline easy to debug and ready for advanced upgrades like Hybrid Search or Graph RAG in the future.
+The system is built using **LangChain Expression Language (LCEL)**, providing a clean, modular, and future-proof pipeline for question-answering tasks.
 
 ---
 
-## Architecture Decisions & Trade-offs
-- **FAISS vs. ChromaDB:** During development, I encountered environment-specific issues with SQLite versions required by ChromaDB on Windows. I decided to pivot to **FAISS** to ensure that the reviewers can run the demo immediately without troubleshooting infrastructure.
-- **SQLite for Metadata:** While a production system might use PostgreSQL, SQLite was the most pragmatic choice for this entry task to keep the demo lightweight and portable while still fulfilling the "SQL Database" requirement.
-- **Modern LCEL:** I deliberately avoided legacy "Chains" in favor of the newer LCEL syntax to ensure the codebase follows 2026's best practices for LangChain development.
+## Architecture Decisions 
+Semantic vs. Fixed Chunking: I pivoted from recursive splitting to Semantic Chunking. While it adds a slight delay during document ingestion, it drastically improves the quality of retrieved context by keeping related ideas together.
+
+FAISS Stability: During development, I prioritized FAISS over ChromaDB due to its reliability in various Python environments, ensuring the demo works seamlessly for reviewers without environment-specific crashes.
+
+SQLite Pragmatism: For a Junior Engineer task, SQLite provided the perfect balance between fulfilling the SQL requirement and keeping the deployment lightweight and portable.
 
 ---
 
@@ -41,6 +46,7 @@ I conducted a small-scale benchmark using a 24-chunk Arabic document:
 - **Retrieval Latency:** ~0.45 seconds (Very fast).
 - **Retrieval Accuracy (Hit Rate):** 100% on direct questions; ~90% on nuanced semantic queries.
 - **Arabic Support:** Successfully retrieved vocalized (مشكّلة) text using non-vocalized queries.
+
 
 Question                | Time (s)                     | Similarity Score
 ---------------------------------------------------------------------------
