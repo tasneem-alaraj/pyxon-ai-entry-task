@@ -1,0 +1,18 @@
+streamlit
+python-dotenv
+pandas
+
+#Document Process Libraries 
+pypdf
+python-docx
+docx2txt
+
+# LangChain
+langchain
+langchain-openai
+langchain-community
+langchain-core
+tiktoken
+
+#Vector Database
+faiss-cpu
