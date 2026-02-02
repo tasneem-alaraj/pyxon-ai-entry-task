@@ -3,7 +3,6 @@
 ## Contact Information
 - **Name:** Tasneem Adel Al'araj
 - **Email:** tasneemalaraj2003@gmail.com
-- **Phone:** 00962785698577
 - **Live Demo:** 🔗[https://pyxon-ai-entry-task-tasneem.streamlit.app](https://pyxon-ai-entry-task-tasneem.streamlit.app)
 
 ---
