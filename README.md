@@ -4,7 +4,7 @@
 - **Name:** Tasneem Adel Al'araj
 - **Email:** tasneemalaraj2003@gmail.com
 - **Phone:** 00962785698577
-- **Live Demo:** 🔗
+- **Live Demo:** 🔗[https://pyxon-ai-entry-task-tasneem.streamlit.app](https://pyxon-ai-entry-task-tasneem.streamlit.app)
 
 ---
 
@@ -41,7 +41,7 @@ SQLite Pragmatism: For a Junior Engineer task, SQLite provided the perfect balan
 
 ---
 
-## Benchmark Results (Trial Run)
+## Benchmark Results
 I conducted a small-scale benchmark using a 24-chunk Arabic document:
 - **Retrieval Latency:** ~0.45 seconds (Very fast).
 - **Retrieval Accuracy (Hit Rate):** 100% on direct questions; ~90% on nuanced semantic queries.

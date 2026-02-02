@@ -3,3 +3,4 @@ __pycache__/
 .env
 *.db
 faiss_index/
+chroma_db/
