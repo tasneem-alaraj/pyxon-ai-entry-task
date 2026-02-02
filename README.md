@@ -51,6 +51,8 @@ I conducted a small-scale benchmark using a 24-chunk Arabic document:
 Question                | Time (s)                     | Similarity Score
 ---------------------------------------------------------------------------
 ما هو اسم الصياد؟                        | 1.0088     | 0.1890999972820282
+
+
 ما هي انواع الاقتصاد                     | 0.3943     | 0.14409999549388885
 
 ---
